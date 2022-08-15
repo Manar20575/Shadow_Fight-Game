@@ -1,0 +1,64 @@
+#import tkinter module
+from tkinter import *
+import pygame
+from PIL import ImageTk, Image  
+
+#form class
+form = Tk()
+
+#change title form
+form.title("Night Games Accounts")
+
+#game window dimentions
+SCREEN_WIDTH = 1080
+SCREEN_HEIGHT = 600
+
+# Define padding values in variables
+px=6
+py=6
+
+#resize form
+form.resizable(False, False)
+#create game window
+form.geometry(f"{SCREEN_WIDTH}x{SCREEN_HEIGHT}")
+form.configure(bg='black')
+
+#contant frame
+frame = Frame(form, bg="#404040", bd=5)
+frame.place(relx=0.5, rely=0.5, relwidth=0.45, relheight=.8, anchor="c")
+
+#header
+header = Label(form,text = "Sign in with an Night Games Accounts", font=('Inter', 14, 'bold'), foreground='white',bg="#404040")
+header.place(relx=0.5, rely=0.5,anchor="c")
+header.pack(padx=px, pady=py+80)
+
+#logo intro
+img = Image.open("assests/logo2.png")
+img = img.resize((80, 80), Image.ANTIALIAS)
+
+#inputs
+email_input = Entry(form, width = 28, font=('Inter', 11))
+email_input.insert(0,"Email Addres")
+email_input.config(state = DISABLED)
+
+#hide place holder when click in input
+def click(event):
+	email_input.config(state = NORMAL)
+	email_input.delete(0,END)
+email_input.bind("<Button-1>", click)
+passw = Entry(form, width = 28, font=('Inter', 11))
+passw.insert(0,"Password")
+passw.config(state = DISABLED)
+
+#hide place holder when click in input
+def click(event):
+	passw.config(state = NORMAL)
+	passw.delete(0,END)
+passw.bind("<Button-1>", click)
+email_input.pack(padx=px, pady=py)
+passw.pack(padx=px, pady=py)
+
+#Button Sign in
+btn = Button(form, text = "LOG IN NOW ", font=('Inter', 10, 'bold'), bg='#ffa581', foreground='white')
+btn.pack(padx=px, pady=py)
+form.mainloop()

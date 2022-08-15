@@ -1,0 +1,66 @@
+#import libraries
+import pygame
+pygame.init()
+
+#import tkinter module
+from tkinter import *
+import pygame
+from PIL import ImageTk, Image  
+
+#game window dimentions
+SCREEN_WIDTH = 1080
+SCREEN_HEIGHT = 600
+
+#create game window
+screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT)) 
+pygame.display.set_caption('3S')
+
+#inputs
+email_input = Entry(screen, width = 28, font=('Inter', 11))
+email_input.insert(0,"Email Addres")
+email_input.config(state = DISABLED)
+
+#hide place holder when click in input
+def click(event):
+	email_input.config(state = NORMAL)
+	email_input.delete(0,END)
+email_input.bind("<Button-1>", click)
+passw = Entry(screen, width = 28, font=('Inter', 11))
+passw.insert(0,"Password")
+passw.config(state = DISABLED)
+
+#hide place holder when click in input
+def click(event):
+	passw.config(state = NORMAL)
+	passw.delete(0,END)
+passw.bind("<Button-1>", click)
+email_input.pack(padx=px, pady=py)
+passw.pack(padx=px, pady=py)
+
+#Button Sign in
+btn = Button(screen, text = "LOG IN NOW ", font=('Inter', 10, 'bold'), bg='#ffa581', foreground='white')
+btn.pack(padx=px, pady=py)
+
+#background intro
+bg_image = pygame.image.load('assests/bg1.jpg').convert_alpha()
+bg_image2 = pygame.image.load('assests/logo.png')
+bg_image2 = pygame.transform.scale(bg_image2, (500, 400))
+
+
+
+
+
+
+#game loop
+run = True
+while run:
+	screen.blit(bg_image,(0,0))
+	screen.blit(bg_image2,(0,0))
+	#event handler
+	for event in pygame.event.get():
+		if event.type == pygame.QUIT:
+			run = False
+	#update display window
+	pygame.display.update()
+form.mainloop()
+pygame.quit()
